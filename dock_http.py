@@ -34,6 +34,9 @@ class MyServer(BaseHTTPRequestHandler):
         except (RuntimeError, TypeError, NameError):
             pass
         self.send_response(200)
+        self.send_header('Content-type', 'text/html')
+        self.end_headers()
+        self.wfile.write(bytes("OK", 'utf-8'))
 
 
 myServer = HTTPServer((hostName, hostPort), MyServer)
